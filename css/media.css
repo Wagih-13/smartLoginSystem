@@ -1,0 +1,9 @@
+@media (max-width: 767px) {
+  nav .container i {
+    display: block;
+  }
+
+  .HomeBody a .logOut {
+    display: none;
+  }
+}
