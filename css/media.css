@@ -6,4 +6,8 @@
   .HomeBody a .logOut {
     display: none;
   }
+
+  .HomeBody .singBox .WellcomHome {
+    font-size: 30px;
+  }
 }
