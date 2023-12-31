@@ -52,7 +52,14 @@ input:focus {
   margin-top: 0px;
   font-family: sans-serif;
   display: none;
-  
+}
+
+.alert2 {
+  font-size: 16px;
+  color: #dc3545;
+  margin-top: 0px;
+  font-family: sans-serif;
+  display: none;
 }
 
 .text {

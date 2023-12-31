@@ -1,4 +1,16 @@
 let inputelemnt = document.querySelectorAll("input");
+let userName = document.querySelector(".nameInp_2");
+let userEmail = document.querySelector(".emailInp_2");
+let userPassword = document.querySelector(".passwordInp_2");
+let uEmail = document.querySelector(".emailInp_1");
+let uPassword = document.querySelector(".passwordInp_1");
+let Users = [];
+let user1 = {
+  Name: "ahmed",
+  Email: "wagih@gmail.com",
+  Password: "14522525",
+};
+
 for (let i = 0; i < inputelemnt.length; i++) {
   inputelemnt[i].addEventListener("keydown", function () {
     if (inputelemnt[i].value != null) {
@@ -15,15 +27,6 @@ if (iconToggle) {
   });
 }
 
-let userName = document.querySelector(".nameInp_2");
-let userEmail = document.querySelector(".emailInp_2");
-let userPassword = document.querySelector(".passwordInp_2");
-let Users = [];
-let user1 = {
-  Name: "ahmed",
-  Email: "wagih@gmail.com",
-  Password: "14522525",
-};
 Users.unshift(user1);
 if (localStorage.getItem("Clints")) {
   Users = JSON.parse(localStorage.getItem("Clints"));
@@ -79,20 +82,21 @@ if (Q) {
 }
 
 function searchUser() {
-  let uEmail = document.querySelector(".emailInp_1");
-  let uPassword = document.querySelector(".passwordInp_1");
-  let count = 0;
+  let flag = false;
   for (let i = 0; i < Users.length; i++) {
     if (
-      Users[i].Email.includes(uEmail.value) == true &&
-      Users[i].Password.includes(uPassword.value) == true
+      Users[i].Email == uEmail.value &&
+      Users[i].Password == uPassword.value
     ) {
-      count++;
+      flag = true;
+      let x = Users[i].Name;
+      localStorage.setItem("usernamee", x);
+      window.location.href = "home.html";
+      break;
     }
   }
-  if (count > 0) {
-    window.location.href = "home.html";
-  } else {
+
+  if (flag == false) {
     alert("not found");
   }
 }
@@ -100,6 +104,21 @@ function searchUser() {
 let S = document.querySelector("#login1");
 if (S) {
   document.querySelector("#login1").addEventListener("click", function () {
-    searchUser();
+    if (uEmail.value != "" && uPassword.value != "") {
+      searchUser();
+    } else {
+      document
+        .querySelector(".alert2")
+        .setAttribute("style", " display: block;");
+    }
   });
+}
+
+if (window.location.pathname.includes("home")) {
+  document.querySelector(
+    ".HomeBody .singBox"
+  ).innerHTML = `<h1 class="WellcomHome"> wellcom ${localStorage.getItem(
+    "usernamee"
+  )}</h1>`;
+  localStorage.removeItem("usernamee");
 }
